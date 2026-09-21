@@ -1,0 +1,29 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
+
+# LaTeX build artifacts, if the report is drafted in-repo
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+*.toc
+
+# Python tooling used for plots/analysis
+__pycache__/
+.venv/
+venv/
+*.pyc
+
+# Large raw captures — keep a pointer in the experiment doc instead.
+# Remove these lines if you decide to version the data itself.
+*.csv.gz
+*.parquet
+*.bag
