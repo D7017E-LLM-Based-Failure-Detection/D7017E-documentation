@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>D7017E — LLM-Based Failure Detection</title>
+  <meta name="description" content="Project course documentation: Testbed telemetry, tinyML, RDF knowledge graphs, and LLM reasoning on the iCAP platform.">
+  <link rel="stylesheet" href="./css/main.css">
+</head>
+<body>
+
+  <!-- Site Header -->
+  <header class="site-header">
+    <div class="container nav-container">
+      <a href="./index.html" class="brand-logo">
+        <span class="brand-badge">D7017E</span>
+        <div class="brand-title">
+          <span>Failure Detection</span>
+          <span class="brand-subtitle">Project Documentation</span>
+        </div>
+      </a>
+
+      <nav>
+        <ul class="nav-links" id="nav-links">
+          <li><a href="./index.html" class="nav-link active">Home</a></li>
+          <li><a href="./activity.html" class="nav-link">Activity Log</a></li>
+          <li><a href="./groups.html" class="nav-link">Groups</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <button id="theme-toggle" class="btn-icon" aria-label="Toggle Dark/Light Mode" title="Toggle Theme">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        </button>
+        <a href="https://github.com/D7017E-LLM-Based-Failure-Detection/D7017E-documentation" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" title="View Source on GitHub">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+          <span>GitHub</span>
+        </a>
+        <button id="menu-toggle" class="btn-icon menu-toggle" aria-label="Open Navigation Menu">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container hero-content">
+      <div class="hero-pill">
+        <span class="hero-pill-dot"></span>
+        <span>Three Groups · One System · One Final Report</span>
+      </div>
+      <!-- Placeholder: Project Course Title -->
+      <h1 class="hero-title" data-placeholder="project-title">
+        D7017E: <span class="hero-title-highlight">LLM-Based Failure Detection</span>
+      </h1>
+      <!-- Placeholder: Project Course Description -->
+      <p class="hero-description" data-placeholder="project-description">
+        Shared project documentation for the D7017E course. Investigating how edge telemetry from physical conveyor testbeds, tinyML models, RDF knowledge graphs, and large language models integrate to form an explainable industrial failure detection pipeline.
+      </p>
+      <div class="hero-actions">
+        <a href="./activity.html" class="btn btn-primary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+          View Activity Log
+        </a>
+        <a href="./groups.html" class="btn btn-secondary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+          Working Groups
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Fast Stats Banner -->
+  <div class="container">
+    <div class="stats-banner">
+      <div class="stat-item">
+        <div class="stat-value">3</div>
+        <div class="stat-label">Subsystems & Groups</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value" id="stats-log-count">1+</div>
+        <div class="stat-label">Logged Milestones</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">100%</div>
+        <div class="stat-label">Open Documentation</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">IEC 61499</div>
+        <div class="stat-label">Industrial Standards</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Subsystems Overview -->
+  <main class="section">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">Project Subsystems</h2>
+          <p class="section-description">How work is distributed across the three specialized project teams.</p>
+        </div>
+        <a href="./groups.html" class="btn btn-secondary btn-sm">View Group Details →</a>
+      </div>
+
+      <div class="grid-3">
+        <!-- Group 1 Card -->
+        <article class="card">
+          <div class="card-header">
+            <span class="badge badge-g1">G1</span>
+            <div class="card-icon" style="background: var(--color-group-g1-bg); color: var(--color-group-g1);">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+            </div>
+          </div>
+          <h3 class="card-title">Testbed, Telemetry & tinyML</h3>
+          <p class="card-description">
+            Operates the lab conveyor belt, collects high-frequency sensor telemetry, handles signal preprocessing, and deploys compact machine learning models onto microcontrollers following IEC 61499 industrial standards.
+          </p>
+          <div class="card-footer">
+            <span>Interface: Physical process & sensors</span>
+            <a href="./groups.html#g1">Read docs →</a>
+          </div>
+        </article>
+
+        <!-- Group 2 Card -->
+        <article class="card">
+          <div class="card-header">
+            <span class="badge badge-g2">G2</span>
+            <div class="card-icon" style="background: var(--color-group-g2-bg); color: var(--color-group-g2);">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
+            </div>
+          </div>
+          <h3 class="card-title">LLM ↔ Knowledge Graph</h3>
+          <p class="card-description">
+            Constructs and maintains RDF ontologies for system semantics, implementing explainable reasoning loops combining SPARQL/SHACL validation with LLMs to diagnose failure modes and generate actionable explanations.
+          </p>
+          <div class="card-footer">
+            <span>Interface: RDF Ontologies & Reasoning</span>
+            <a href="./groups.html#g2">Read docs →</a>
+          </div>
+        </article>
+
+        <!-- Group 3 Card -->
+        <article class="card">
+          <div class="card-header">
+            <span class="badge badge-g3">G3</span>
+            <div class="card-icon" style="background: var(--color-group-g3-bg); color: var(--color-group-g3);">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+            </div>
+          </div>
+          <h3 class="card-title">iCAP Platform & Web UI</h3>
+          <p class="card-description">
+            The SCADA-like operational platform providing scalable time-series telemetry storage, interactive web dashboards, visualization widgets, and hosting the knowledge graph reasoning services and edge ML interfaces.
+          </p>
+          <div class="card-footer">
+            <span>Interface: Ingestion, Storage & Dashboard</span>
+            <a href="./groups.html#g3">Read docs →</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </main>
+
+  <!-- Activity Log Feature Showcase -->
+  <section class="section" style="background-color: var(--color-bg-surface-elevated); border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border);">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">Automated Activity Tracking</h2>
+          <p class="section-description">
+            Synchronized directly with <code>README.md</code> following the <code>CONTRIBUTING.md</code> specification.
+          </p>
+        </div>
+        <a href="./activity.html" class="btn btn-primary btn-sm">Open Full Log Tracker →</a>
+      </div>
+
+      <div class="card" style="margin-bottom: 1.5rem;">
+        <div class="sync-banner" style="margin-bottom: 0; background: transparent; border: none; padding: 0;">
+          <div class="sync-status">
+            <span class="sync-dot"></span>
+            <div class="sync-details">
+              <span class="sync-title" id="landing-latest-title">README is the log, docs are the state</span>
+              <span class="sync-subtitle" id="landing-latest-subtitle">Every working session, milestone, and cross-group decision logged in repo</span>
+            </div>
+          </div>
+          <div class="sync-actions">
+            <a href="./activity.html" class="btn btn-secondary btn-sm">Explore Log Timeline</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Project Guidelines & Resources -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">Project Documentation Hub</h2>
+          <p class="section-description">Key documents, guidelines, templates, and references in the repository.</p>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3 class="card-title">Core Guidelines</h3>
+          <p class="card-description">
+            All team members document progress continuously to prevent last-minute report reconstruction. Absolute dates, citations in <code>references.bib</code>, and numbers in <code>experiments/</code>.
+          </p>
+          <div class="card-footer">
+            <a href="https://github.com/D7017E-LLM-Based-Failure-Detection/D7017E-documentation/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">CONTRIBUTING.md ↗</a>
+            <a href="https://github.com/D7017E-LLM-Based-Failure-Detection/D7017E-documentation/blob/main/report/outline.md" target="_blank" rel="noopener noreferrer">Report Outline ↗</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 class="card-title">Templates & Standards</h3>
+          <p class="card-description">
+            Standardized markdown templates for Architectural Decision Records (ADR), interface contracts, experiment logs, and meeting minutes.
+          </p>
+          <div class="card-footer">
+            <a href="https://github.com/D7017E-LLM-Based-Failure-Detection/D7017E-documentation/tree/main/templates" target="_blank" rel="noopener noreferrer">View Templates ↗</a>
+            <a href="https://github.com/D7017E-LLM-Based-Failure-Detection/D7017E-documentation/tree/main/references" target="_blank" rel="noopener noreferrer">References & BibTeX ↗</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="brand-logo" style="margin-bottom: 0.75rem;">
+            <span class="brand-badge">D7017E</span>
+            <span>Failure Detection</span>
+          </div>
+          <p style="color: var(--color-text-muted); font-size: 0.85rem; max-width: 320px;">
+            Collaborative course project documentation hosted on GitHub Pages. Isolated in the <code>website/</code> repository folder.
+          </p>
+        </div>
+        <div>
+          <h4 class="footer-col-title">Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="./index.html" class="footer-link">Home</a></li>
+            <li><a href="./activity.html" class="footer-link">Activity Log</a></li>
+            <li><a href="./groups.html" class="footer-link">Groups</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-col-title">Subsystems</h4>
+          <ul class="footer-links">
+            <li><a href="./groups.html#g1" class="footer-link">G1: Testbed & tinyML</a></li>
+            <li><a href="./groups.html#g2" class="footer-link">G2: LLM & Knowledge Graph</a></li>
+            <li><a href="./groups.html#g3" class="footer-link">G3: iCAP Platform</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-col-title">Repository</h4>
+          <ul class="footer-links">
+            <li><a href="https://github.com/D7017E-LLM-Based-Failure-Detection/D7017E-documentation" target="_blank" rel="noopener noreferrer" class="footer-link">GitHub Repository</a></li>
+            <li><a href="https://github.com/D7017E-LLM-Based-Failure-Detection/D7017E-documentation/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer" class="footer-link">Contributing Guide</a></li>
+            <li><a href="https://github.com/D7017E-LLM-Based-Failure-Detection/D7017E-documentation/blob/main/report/outline.md" target="_blank" rel="noopener noreferrer" class="footer-link">Final Report Outline</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>© 2026 D7017E Project Team. Hosted with GitHub Pages.</div>
+        <div>Automated sync enabled for <code>README.md</code></div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="./js/main.js"></script>
+  <script src="./data/activity-log.js"></script>
+  <script src="./js/log-parser.js"></script>
+  <script>
+    (async function () {
+      function updateLandingPreview(data) {
+        if (!data) return;
+        const countEl = document.getElementById('stats-log-count');
+        if (countEl && data.stats) {
+          countEl.textContent = data.stats.total;
+        }
+        if (data.entries && data.entries.length > 0) {
+          const latest = data.entries[0];
+          const titleEl = document.getElementById('landing-latest-title');
+          const subtitleEl = document.getElementById('landing-latest-subtitle');
+          if (titleEl) {
+            titleEl.textContent = `Latest (${latest.displayDate || latest.date}): ${latest.summary}`;
+          }
+          if (subtitleEl) {
+            subtitleEl.textContent = `Logged by [${latest.group}]${latest.author ? ' (' + latest.author + ')' : ''} · Synced from repository`;
+          }
+        }
+      }
+
+      // 1. Initial attempt from preloaded script data or cached activity-log.json
+      if (window.ACTIVITY_LOG_DATA) {
+        updateLandingPreview(window.ACTIVITY_LOG_DATA);
+      }
+      try {
+        const res = await fetch('./data/activity-log.json?t=' + Date.now());
+        if (res.ok) {
+          const json = await res.json();
+          updateLandingPreview(json);
+        }
+      } catch (e) {}
+
+      // 2. If running locally, check local README.md directly so unpushed edits show immediately on reload
+      const isLocal = !window.location.hostname.endsWith('.github.io');
+      if (isLocal && window.LogParser) {
+        const candidates = ['../README.md', './README.md', '/README.md', './data/README.md', '/data/README.md'];
+        for (const candidate of candidates) {
+          try {
+            const readmeRes = await fetch(candidate + '?t=' + Date.now());
+            if (readmeRes.ok) {
+              const text = await readmeRes.text();
+              if (text.includes('Activity log') || /-\s*\d{4}[-/.Post]/.test(text)) {
+                const parsed = window.LogParser.parseActivityLogs(text);
+                if (parsed && parsed.length > 0) {
+                  const stats = window.LogParser.calculateLogStats(parsed);
+                  updateLandingPreview({ stats, entries: parsed });
+                  break;
+                }
+              }
+            }
+          } catch (e) {}
+        }
+      }
+    })();
+  </script>
+</body>
+</html>

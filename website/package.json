@@ -1,0 +1,24 @@
+{
+  "name": "d7017e-documentation-website",
+  "version": "1.0.0",
+  "description": "GitHub Pages documentation website for D7017E LLM-Based Failure Detection project",
+  "scripts": {
+    "start": "node scripts/serve.js",
+    "dev": "node scripts/serve.js",
+    "serve": "node scripts/serve.js",
+    "sync": "node scripts/sync-activity-logs.js",
+    "sync:watch": "node scripts/sync-activity-logs.js --watch",
+    "sync:py": "python3 scripts/sync-activity-logs.py",
+    "build": "node scripts/sync-activity-logs.js",
+    "test": "node --test tests/*.test.js"
+  },
+  "keywords": [
+    "d7017e",
+    "documentation",
+    "github-pages",
+    "activity-log",
+    "failure-detection"
+  ],
+  "author": "D7017E Project Team",
+  "license": "MIT"
+}
