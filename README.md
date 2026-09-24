@@ -23,12 +23,12 @@ docs say *what it is*.
 Format: `YYYY-MM-DD — [G1|G2|G3|ALL] who — what happened. → link`
 
 <!-- Add new entries directly below this line -->
-
-- 2026-09-24 — ALL (PO) — Delivery repo drafted: component contract, component registry, first end-to-end scenario (S01), ADR 0001 (containers) proposed. → D7017E-delivery
-
 - 2026-09-21 — ALL — Documentation repo set up. → [CONTRIBUTING.md](CONTRIBUTING.md)
+- 2026-09-21 — G1  — Meeting in the Lab with the supervisor. They showed us around and scheduled a demonstration of the system later this week.
+- 2026-09-24 — ALL (PO) — Delivery repo drafted: component contract, component registry, first end-to-end scenario (S01), ADR 0001 (containers) proposed. → D7017E-delivery
 - 2026-09-24 — ALL — Presented work done during Week 38-39 in meeting with the product owner & Co. 
-- 
+
+
 <!-- Example entries, delete when the log has real content:
 - 2026-09-24 — G2 (name) — Read the LLM+KG roadmap survey, 4 bibtex entries added. → [references/references.bib](references/references.bib)
 - 2026-09-25 — G1 (name, name) — Conveyor belt powered up, photoelectric sensor readings logged. → [groups/g1-testbed-telemetry-tinyml](groups/g1-testbed-telemetry-tinyml/README.md)
