@@ -2,7 +2,9 @@
  * Universal Activity Log Parser
  * Parses activity logs written according to CONTRIBUTING.md / README.md specifications.
  * Format: `YYYY-MM-DD — [G1|G2|G3|ALL] who — what happened. → link`
- * 
+ * Group entries may start with `<a id="YYYY-MM-DD-slug"></a>` (-> entry.anchor);
+ * personal log entries may end with `⇡ [id](../README.md#id)` (-> entry.groupRef).
+ *
  * Works in both Node.js and Browser environments.
  */
 (function (root, factory) {
@@ -142,6 +144,13 @@
     line = line.replace(/^[-*+]\s+/, '').replace(/^\d+\.\s+/, '').trim();
     if (!line) return null;
 
+    // Entry anchor: <a id="2026-09-24-delivery-repo"></a> (lets personal logs link here)
+    let anchor = null;
+    line = line.replace(/<a\s+(?:id|name)="([^"]+)"\s*>\s*<\/a>/gi, (_, id) => {
+      if (!anchor) anchor = id.trim();
+      return '';
+    }).trim();
+
     // Remove leading bold/italic stars if present around the date: **2026-09-21**
     line = line.replace(/^\*{1,2}/, '').replace(/\*{1,2}$/, '').trim();
 
@@ -230,6 +239,13 @@
       author = null;
     }
 
+    // Personal log link to a group log entry: ⇡ [id](../README.md#id)
+    let groupRef = null;
+    contentPart = contentPart.replace(/\s*⇡\s*\[([^\]]+)\]\(([^)]*#([^)\s]+))\)/, (_, text, url, id) => {
+      groupRef = { id: id.trim(), text: text.trim(), url: url.trim() };
+      return '';
+    }).trim();
+
     // Extract links
     const links = extractMarkdownLinks(contentPart, repoBaseUrl);
 
@@ -256,6 +272,8 @@
       summary: cleanSummary,
       rawContent: contentPart,
       links,
+      anchor,
+      groupRef,
       raw: rawLine.trim()
     };
   }
@@ -395,7 +413,50 @@
     };
   }
 
+  /**
+   * Parse the people table in people/README.md.
+   * Columns (matched by header text): Name | GitHub | Current group | Personal log
+   * Returns [{ name, slug, github, groupLabel, group, file }]
+   */
+  function parsePeopleIndex(markdownText) {
+    if (!markdownText || typeof markdownText !== 'string') return [];
+    const rows = markdownText.split(/\r?\n/)
+      .map(l => l.trim())
+      .filter(l => l.startsWith('|'))
+      .map(l => l.replace(/^\|/, '').replace(/\|$/, '').split('|').map(c => c.trim()));
+    if (rows.length < 2) return [];
+
+    const header = rows[0].map(h => h.toLowerCase());
+    const col = (re) => header.findIndex(h => re.test(h));
+    const nameCol = col(/name/);
+    const githubCol = col(/github/);
+    const groupCol = col(/group/);
+    const logCol = col(/log/);
+    if (nameCol < 0 || logCol < 0) return [];
+
+    return rows.slice(1)
+      .filter(r => !r.every(c => /^:?-+:?$/.test(c)))
+      .map(r => {
+        const fileMatch = /\(([^)]+\.md)\)/.exec(r[logCol] || '') || /([\w.-]+\.md)/.exec(r[logCol] || '');
+        if (!fileMatch) return null;
+        const file = fileMatch[1].replace(/^\.?\//, '');
+        const githubMatch = /@([\w-]+)/.exec(githubCol >= 0 ? r[githubCol] : '');
+        const groupLabel = groupCol >= 0 ? r[groupCol] : '';
+        const groupMatch = /\bG([123])\b/i.exec(groupLabel);
+        return {
+          name: r[nameCol],
+          slug: file.replace(/\.md$/, '').split('/').pop(),
+          github: githubMatch ? githubMatch[1] : null,
+          groupLabel,
+          group: groupMatch ? `G${groupMatch[1]}` : 'ALL',
+          file
+        };
+      })
+      .filter(Boolean);
+  }
+
   return {
+    parsePeopleIndex,
     formatDisplayDate,
     extractActivitySection,
     extractMarkdownLinks,

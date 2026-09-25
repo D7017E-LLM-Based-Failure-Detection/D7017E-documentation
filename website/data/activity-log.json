@@ -1,26 +1,71 @@
 {
-  "syncedAt": "2026-09-24T13:59:37.677Z",
+  "syncedAt": "2026-09-25T10:04:54.677Z",
   "sourceFiles": [
     "README.md"
   ],
   "sourceFile": "README.md",
   "stats": {
-    "total": 2,
+    "total": 9,
     "byGroup": {
-      "ALL": 2,
-      "G1": 0,
-      "G2": 0,
+      "ALL": 5,
+      "G1": 1,
+      "G2": 3,
       "G3": 0,
       "OTHER": 0
     },
-    "latestDate": "2026-09-24",
+    "latestDate": "2026-09-25",
     "earliestDate": "2026-09-21",
     "contributorCount": 0,
     "contributors": []
   },
   "entries": [
     {
-      "id": "log-2026-09-24-all-1",
+      "id": "log-2026-09-25-all-1",
+      "date": "2026-09-25",
+      "displayDate": "Sep 25, 2026",
+      "group": "ALL",
+      "author": null,
+      "summary": "Personal activity logs added, one per person, linkable to entries here.",
+      "rawContent": "Personal activity logs added, one per person, linkable to entries here. → [people/](people/README.md)",
+      "links": [
+        {
+          "text": "people/",
+          "url": "people/README.md",
+          "githubUrl": "https://github.com/D7017E-LLM-Based-Failure-Detection/D7017E-documentation/blob/main/people/README.md"
+        }
+      ],
+      "anchor": "2026-09-25-personal-logs",
+      "groupRef": null,
+      "raw": "- <a id=\"2026-09-25-personal-logs\"></a>2026-09-25 — ALL — Personal activity logs added, one per person, linkable to entries here. → [people/](people/README.md)"
+    },
+    {
+      "id": "log-2026-09-25-all-2",
+      "date": "2026-09-25",
+      "displayDate": "Sep 25, 2026",
+      "group": "ALL",
+      "author": null,
+      "summary": "Everyone worked together on the project description and completed it.",
+      "rawContent": "Everyone worked together on the project description and completed it.",
+      "links": [],
+      "anchor": "2026-09-25-project-description",
+      "groupRef": null,
+      "raw": "- <a id=\"2026-09-25-project-description\"></a>2026-09-25 — ALL — Everyone worked together on the project description and completed it."
+    },
+    {
+      "id": "log-2026-09-24-all-3",
+      "date": "2026-09-24",
+      "displayDate": "Sep 24, 2026",
+      "group": "ALL",
+      "author": null,
+      "summary": "Delivery repo drafted: component contract, component registry, first end-to-end scenario (S01), ADR 0001 (containers) proposed. → D7017E-delivery",
+      "rawContent": "Delivery repo drafted: component contract, component registry, first end-to-end scenario (S01), ADR 0001 (containers) proposed. → D7017E-delivery",
+      "links": [],
+      "anchor": "2026-09-24-delivery-repo",
+      "groupRef": null,
+      "raw": "- <a id=\"2026-09-24-delivery-repo\"></a>2026-09-24 — ALL — Delivery repo drafted: component contract, component registry, first end-to-end scenario (S01), ADR 0001 (containers) proposed. → D7017E-delivery"
+    },
+    {
+      "id": "log-2026-09-24-all-4",
       "date": "2026-09-24",
       "displayDate": "Sep 24, 2026",
       "group": "ALL",
@@ -28,10 +73,25 @@
       "summary": "Presented work done during Week 38-39 in meeting with the product owner & Co.",
       "rawContent": "Presented work done during Week 38-39 in meeting with the product owner & Co.",
       "links": [],
-      "raw": "- 2026-09-24 — ALL — Presented work done during Week 38-39 in meeting with the product owner & Co."
+      "anchor": "2026-09-24-po-meeting",
+      "groupRef": null,
+      "raw": "- <a id=\"2026-09-24-po-meeting\"></a>2026-09-24 — ALL — Presented work done during Week 38-39 in meeting with the product owner & Co."
     },
     {
-      "id": "log-2026-09-21-all-2",
+      "id": "log-2026-09-22-g2-5",
+      "date": "2026-09-22",
+      "displayDate": "Sep 22, 2026",
+      "group": "G2",
+      "author": null,
+      "summary": "Added an initial FastAPI query endpoint, GraphDB Docker configuration and setup instructions. Explored GraphDB and tried SPARQL queries.",
+      "rawContent": "Added an initial FastAPI query endpoint, GraphDB Docker configuration and setup instructions. Explored GraphDB and tried SPARQL queries.",
+      "links": [],
+      "anchor": "2026-09-22-graphdb-fastapi",
+      "groupRef": null,
+      "raw": "- <a id=\"2026-09-22-graphdb-fastapi\"></a>2026-09-22 — G2 — Added an initial FastAPI query endpoint, GraphDB Docker configuration and setup instructions. Explored GraphDB and tried SPARQL queries."
+    },
+    {
+      "id": "log-2026-09-21-all-6",
       "date": "2026-09-21",
       "displayDate": "Sep 21, 2026",
       "group": "ALL",
@@ -45,7 +105,48 @@
           "githubUrl": "https://github.com/D7017E-LLM-Based-Failure-Detection/D7017E-documentation/blob/main/CONTRIBUTING.md"
         }
       ],
-      "raw": "- 2026-09-21 — ALL — Documentation repo set up. → [CONTRIBUTING.md](CONTRIBUTING.md)"
+      "anchor": "2026-09-21-docs-repo",
+      "groupRef": null,
+      "raw": "- <a id=\"2026-09-21-docs-repo\"></a>2026-09-21 — ALL — Documentation repo set up. → [CONTRIBUTING.md](CONTRIBUTING.md)"
+    },
+    {
+      "id": "log-2026-09-21-g1-7",
+      "date": "2026-09-21",
+      "displayDate": "Sep 21, 2026",
+      "group": "G1",
+      "author": null,
+      "summary": "Meeting in the Lab with the supervisor. They showed us around and scheduled a demonstration of the system later this week.",
+      "rawContent": "Meeting in the Lab with the supervisor. They showed us around and scheduled a demonstration of the system later this week.",
+      "links": [],
+      "anchor": "2026-09-21-g1-lab-visit",
+      "groupRef": null,
+      "raw": "- <a id=\"2026-09-21-g1-lab-visit\"></a>2026-09-21 — G1  — Meeting in the Lab with the supervisor. They showed us around and scheduled a demonstration of the system later this week."
+    },
+    {
+      "id": "log-2026-09-21-g2-8",
+      "date": "2026-09-21",
+      "displayDate": "Sep 21, 2026",
+      "group": "G2",
+      "author": null,
+      "summary": "Created the llm-kg repository, imported MAESTRO, and added Python environment instructions and a quickstart script for querying example data.",
+      "rawContent": "Created the llm-kg repository, imported MAESTRO, and added Python environment instructions and a quickstart script for querying example data.",
+      "links": [],
+      "anchor": "2026-09-21-llm-kg-repo",
+      "groupRef": null,
+      "raw": "- <a id=\"2026-09-21-llm-kg-repo\"></a>2026-09-21 — G2 — Created the llm-kg repository, imported MAESTRO, and added Python environment instructions and a quickstart script for querying example data."
+    },
+    {
+      "id": "log-2026-09-21-g2-9",
+      "date": "2026-09-21",
+      "displayDate": "Sep 21, 2026",
+      "group": "G2",
+      "author": null,
+      "summary": "Held a sprint planning meeting.",
+      "rawContent": "Held a sprint planning meeting.",
+      "links": [],
+      "anchor": "2026-09-21-g2-sprint-planning",
+      "groupRef": null,
+      "raw": "- <a id=\"2026-09-21-g2-sprint-planning\"></a>2026-09-21 — G2 — Held a sprint planning meeting."
     }
   ]
 }

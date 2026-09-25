@@ -14,13 +14,42 @@
 
 const fs = require('fs');
 const path = require('path');
-const { parseActivityLogs, mergeLogEntries, calculateLogStats } = require('../js/log-parser.js');
+const { parseActivityLogs, mergeLogEntries, calculateLogStats, parsePeopleIndex, DEFAULT_REPO_BASE_URL } = require('../js/log-parser.js');
 
 const ROOT_DIR = path.resolve(__dirname, '../..');
 const README_PATH = process.env.README_PATH || path.join(ROOT_DIR, 'README.md');
 const CONTRIBUTING_PATH = process.env.CONTRIBUTING_PATH || path.join(ROOT_DIR, 'CONTRIBUTING.md');
 const OUTPUT_DIR = path.resolve(__dirname, '../data');
 const OUTPUT_PATH = path.join(OUTPUT_DIR, 'activity-log.json');
+const PEOPLE_DIR = path.join(ROOT_DIR, 'people');
+const PEOPLE_OUTPUT_PATH = path.join(OUTPUT_DIR, 'people-log.json');
+
+/**
+ * Compile people/README.md (who's who) + people/<slug>.md (personal logs)
+ * into data/people-log.json and data/people-log.js.
+ */
+function syncPeopleLogs() {
+  const indexPath = path.join(PEOPLE_DIR, 'README.md');
+  const people = fs.existsSync(indexPath)
+    ? parsePeopleIndex(fs.readFileSync(indexPath, 'utf8')).map(person => {
+        const filePath = path.join(PEOPLE_DIR, person.file);
+        const entries = fs.existsSync(filePath)
+          ? parseActivityLogs(fs.readFileSync(filePath, 'utf8'), { repoBaseUrl: `${DEFAULT_REPO_BASE_URL}/people` })
+          : [];
+        return { ...person, entries };
+      })
+    : [];
+
+  const payload = { syncedAt: new Date().toISOString(), people };
+  if (!fs.existsSync(OUTPUT_DIR)) {
+    fs.mkdirSync(OUTPUT_DIR, { recursive: true });
+  }
+  fs.writeFileSync(PEOPLE_OUTPUT_PATH, JSON.stringify(payload, null, 2), 'utf8');
+  fs.writeFileSync(path.join(OUTPUT_DIR, 'people-log.js'), `window.PEOPLE_LOG_DATA = ${JSON.stringify(payload, null, 2)};\n`, 'utf8');
+  const total = people.reduce((n, p) => n + p.entries.length, 0);
+  console.log(`[sync-activity-logs] Synced ${people.length} people, ${total} personal entries into ${PEOPLE_OUTPUT_PATH}`);
+  return payload;
+}
 
 function syncLogs() {
   console.log(`[sync-activity-logs] Reading activity logs...`);
@@ -82,8 +111,11 @@ function syncLogs() {
   return payload;
 }
 
-if (process.argv.includes('--watch')) {
+if (require.main !== module) {
+  module.exports = { syncLogs, syncPeopleLogs };
+} else if (process.argv.includes('--watch')) {
   syncLogs();
+  syncPeopleLogs();
   console.log(`[sync-activity-logs] Watching for changes to ${README_PATH}...`);
   if (fs.existsSync(README_PATH)) {
     fs.watch(README_PATH, (eventType) => {
@@ -101,6 +133,13 @@ if (process.argv.includes('--watch')) {
       }
     });
   }
+  if (fs.existsSync(PEOPLE_DIR)) {
+    fs.watch(PEOPLE_DIR, () => {
+      console.log(`[sync-activity-logs] people/ changed, resyncing...`);
+      syncPeopleLogs();
+    });
+  }
 } else {
   syncLogs();
+  syncPeopleLogs();
 }

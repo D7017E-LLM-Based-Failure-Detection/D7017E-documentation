@@ -82,6 +82,10 @@ def parse_log_line(raw_line: str, repo_base_url: str = DEFAULT_REPO_BASE_URL, in
     line = raw_line.strip()
     line = re.sub(r"^[-*+]\s+", "", line)
     line = re.sub(r"^\d+\.\s+", "", line).strip()
+    # Entry anchor: <a id="2026-09-24-delivery-repo"></a> (lets personal logs link here)
+    anchor_match = re.search(r'<a\s+(?:id|name)="([^"]+)"\s*>\s*</a>', line, re.I)
+    anchor = anchor_match.group(1).strip() if anchor_match else None
+    line = re.sub(r'<a\s+(?:id|name)="([^"]+)"\s*>\s*</a>', "", line, flags=re.I).strip()
     line = re.sub(r"^\*{1,2}", "", line)
     line = re.sub(r"\*{1,2}$", "", line).strip()
     if not line:
@@ -144,6 +148,13 @@ def parse_log_line(raw_line: str, repo_base_url: str = DEFAULT_REPO_BASE_URL, in
     if author and re.match(r"^(who|name|names|author)$", author.strip(), re.I):
         author = None
 
+    # Personal log link to a group log entry: ⇡ [id](../README.md#id)
+    group_ref = None
+    ref_match = re.search(r"\s*⇡\s*\[([^\]]+)\]\(([^)]*#([^)\s]+))\)", content_part)
+    if ref_match:
+        group_ref = {"id": ref_match.group(3).strip(), "text": ref_match.group(1).strip(), "url": ref_match.group(2).strip()}
+        content_part = (content_part[:ref_match.start()] + content_part[ref_match.end():]).strip()
+
     links = extract_markdown_links(content_part, repo_base_url)
 
     clean_summary = re.sub(r"(?:→|->|=>|&rarr;)\s*(?:(?:\[[^\]]+\]\([^)]+\)|https?://[^\s]+|[a-zA-Z0-9_\-\./]+\.md\b)(?:\s*[,;&and]+\s*)?)+$", "", content_part)
@@ -163,12 +174,14 @@ def parse_log_line(raw_line: str, repo_base_url: str = DEFAULT_REPO_BASE_URL, in
         "summary": clean_summary,
         "rawContent": content_part,
         "links": links,
+        "anchor": anchor,
+        "groupRef": group_ref,
         "raw": raw_line.strip()
     }
 
 def extract_activity_section(markdown_text: str) -> str:
     cleaned = re.sub(r"<!--[\s\S]*?-->", "", markdown_text or "")
-    match = re.search(r"(?:^|\n)#{1,3}\s+(?:Project\s+|Recent\s+)?(?:Activity(?:\s+logs?)?|Changelog|Work\s+Log)\b.*$", cleaned, re.I)
+    match = re.search(r"(?:^|\n)#{1,3}\s+(?:Project\s+|Recent\s+)?(?:Activity(?:\s+logs?)?|Changelog|Work\s+Log)\b.*$", cleaned, re.I | re.M)
     if not match:
         has_log_pattern = re.search(r"(?:^|\n)\s*[-*+]?\s*\d{4}[-/.]\d{1,2}[-/.]\d{1,2}", cleaned)
         return cleaned if has_log_pattern else ""
@@ -233,6 +246,74 @@ def merge_log_entries(entries_a, entries_b):
     for idx, e in enumerate(merged):
         e["id"] = f"log-{e['date']}-{e['group'].lower()}-{idx + 1}"
     return merged
+
+def parse_people_index(markdown_text: str):
+    """Parse the people table in people/README.md (Name | GitHub | Current group | Personal log)."""
+    rows = [
+        [c.strip() for c in re.sub(r"^\||\|$", "", line.strip()).split("|")]
+        for line in (markdown_text or "").splitlines()
+        if line.strip().startswith("|")
+    ]
+    if len(rows) < 2:
+        return []
+
+    header = [h.lower() for h in rows[0]]
+
+    def col(pattern):
+        return next((i for i, h in enumerate(header) if re.search(pattern, h)), -1)
+
+    name_col, github_col, group_col, log_col = col("name"), col("github"), col("group"), col("log")
+    if name_col < 0 or log_col < 0:
+        return []
+
+    people = []
+    for r in rows[1:]:
+        if all(re.match(r"^:?-+:?$", c) for c in r):
+            continue
+        log_cell = r[log_col] if log_col < len(r) else ""
+        file_match = re.search(r"\(([^)]+\.md)\)", log_cell) or re.search(r"([\w.-]+\.md)", log_cell)
+        if not file_match:
+            continue
+        file = re.sub(r"^\.?/", "", file_match.group(1))
+        github_match = re.search(r"@([\w-]+)", r[github_col] if 0 <= github_col < len(r) else "")
+        group_label = r[group_col] if 0 <= group_col < len(r) else ""
+        group_match = re.search(r"\bG([123])\b", group_label, re.I)
+        people.append({
+            "name": r[name_col],
+            "slug": re.sub(r"\.md$", "", file).split("/")[-1],
+            "github": github_match.group(1) if github_match else None,
+            "groupLabel": group_label,
+            "group": f"G{group_match.group(1)}" if group_match else "ALL",
+            "file": file,
+        })
+    return people
+
+
+def sync_people_logs(root_dir: Path, output_dir: Path):
+    """Compile people/README.md + people/<slug>.md into data/people-log.json and .js."""
+    people_dir = root_dir / "people"
+    index_path = people_dir / "README.md"
+    people = []
+    if index_path.exists():
+        for person in parse_people_index(index_path.read_text(encoding="utf-8")):
+            log_path = people_dir / person["file"]
+            text = log_path.read_text(encoding="utf-8") if log_path.exists() else ""
+            person["entries"] = parse_activity_logs(text, f"{DEFAULT_REPO_BASE_URL}/people")
+            people.append(person)
+
+    payload = {
+        "syncedAt": datetime.datetime.now(datetime.timezone.utc).isoformat(),
+        "people": people
+    }
+    output_dir.mkdir(parents=True, exist_ok=True)
+    with open(output_dir / "people-log.json", "w", encoding="utf-8") as f:
+        json.dump(payload, f, indent=2, ensure_ascii=False)
+    with open(output_dir / "people-log.js", "w", encoding="utf-8") as f:
+        f.write(f"window.PEOPLE_LOG_DATA = {json.dumps(payload, indent=2, ensure_ascii=False)};\n")
+
+    total = sum(len(p["entries"]) for p in people)
+    print(f"[sync-activity-logs.py] Synced {len(people)} people, {total} personal entries to {output_dir / 'people-log.json'}")
+
 
 def main():
     root_dir = Path(__file__).resolve().parent.parent.parent
@@ -308,6 +389,8 @@ def main():
             pass
 
     print(f"[sync-activity-logs.py] Synced {len(entries)} entries to {output_path}")
+
+    sync_people_logs(root_dir, output_dir)
 
 if __name__ == "__main__":
     main()
