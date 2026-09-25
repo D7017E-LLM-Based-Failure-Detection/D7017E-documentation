@@ -23,8 +23,7 @@ docs say *what it is*.
 Format: `YYYY-MM-DD — [G1|G2|G3|ALL] who — what happened. → link`
 
 <!-- Add new entries directly below this line -->
-- 2026-09-25 — G1 — Worked with G2 on the project description and completed it.
-- 2026-09-25 — G2 — Worked with G1 on the project description and completed it.
+- 2026-09-25 — ALL — Everyone worked together on the project description and completed it.
 - 2026-09-21 — ALL — Documentation repo set up. → [CONTRIBUTING.md](CONTRIBUTING.md)
 - 2026-09-21 — G1  — Meeting in the Lab with the supervisor. They showed us around and scheduled a demonstration of the system later this week.
 - 2026-09-24 — ALL (PO) — Delivery repo drafted: component contract, component registry, first end-to-end scenario (S01), ADR 0001 (containers) proposed. → D7017E-delivery
