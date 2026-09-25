@@ -24,11 +24,11 @@ Format: `YYYY-MM-DD — [G1|G2|G3|ALL] who — what happened. → link`
 
 <!-- Add new entries directly below this line -->
 - 2026-09-25 — ALL — Everyone worked together on the project description and completed it.
-- 2026-09-21 — ALL — Documentation repo set up. → [CONTRIBUTING.md](CONTRIBUTING.md)
-- 2026-09-21 — G1  — Meeting in the Lab with the supervisor. They showed us around and scheduled a demonstration of the system later this week.
 - 2026-09-24 — ALL (PO) — Delivery repo drafted: component contract, component registry, first end-to-end scenario (S01), ADR 0001 (containers) proposed. → D7017E-delivery
 - 2026-09-24 — ALL — Presented work done during Week 38-39 in meeting with the product owner & Co. 
 - 2026-09-22 — G2 — Added an initial FastAPI query endpoint, GraphDB Docker configuration and setup instructions, and a local MAESTRO handbook.
+- 2026-09-21 — ALL — Documentation repo set up. → [CONTRIBUTING.md](CONTRIBUTING.md)
+- 2026-09-21 — G1  — Meeting in the Lab with the supervisor. They showed us around and scheduled a demonstration of the system later this week.
 - 2026-09-21 — G2 — Created the llm-kg repository, imported MAESTRO, and added Python environment instructions and a quickstart script for querying example data.
 - 2026-09-21 — G2 — Held a sprint planning meeting.
 
