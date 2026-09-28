@@ -3,10 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Activity Log — D7017E Documentation</title>
-  <meta name="description" content="Chronological activity log tracking working sessions, milestones, and cross-group decisions for the D7017E project.">
+  <title>People — D7017E Documentation</title>
+  <meta name="description" content="Personal activity logs: what each team member worked on, linked to the group activity log.">
   <link rel="stylesheet" href="./css/main.css">
   <link rel="stylesheet" href="./css/activity.css">
+  <link rel="stylesheet" href="./css/people.css">
 </head>
 <body>
 
@@ -24,8 +25,8 @@
       <nav>
         <ul class="nav-links" id="nav-links">
           <li><a href="./index.html" class="nav-link">Home</a></li>
-          <li><a href="./activity.html" class="nav-link active">Activity Log</a></li>
-          <li><a href="./people.html" class="nav-link">People</a></li>
+          <li><a href="./activity.html" class="nav-link">Activity Log</a></li>
+          <li><a href="./people.html" class="nav-link active">People</a></li>
           <li><a href="./groups.html" class="nav-link">Groups</a></li>
         </ul>
       </nav>
@@ -48,15 +49,11 @@
   <!-- Page Header -->
   <section class="hero" style="padding: 3rem 0 2.5rem;">
     <div class="container hero-content">
-      <div class="hero-pill">
-        <span class="hero-pill-dot"></span>
-        <span>Repository Synchronized</span>
-      </div>
       <h1 class="hero-title" style="font-size: 2.25rem; margin-bottom: 0.75rem;">
-        Project <span class="hero-title-highlight">Activity Log</span>
+        Personal <span class="hero-title-highlight">Activity Logs</span>
       </h1>
       <p class="hero-description" style="max-width: 720px; margin-bottom: 0; font-size: 1.05rem;">
-        Chronological record of working sessions, milestone deliveries, and cross-group agreements. Follows the rules defined in <code>CONTRIBUTING.md</code>: the log says <em>what happened</em>; the docs say <em>what it is</em>.
+        What each team member worked on. The <a href="./activity.html">group activity log</a> records what happened for the team; these logs record who did the work. An entry marked <strong>⇡ Part of</strong> belongs to a specific group log entry.
       </p>
     </div>
   </section>
@@ -70,74 +67,48 @@
         <div class="sync-status">
           <div class="sync-dot" id="sync-dot"></div>
           <div class="sync-details">
-            <span class="sync-title" id="sync-title">Connecting to activity source...</span>
-            <span class="sync-subtitle" id="sync-subtitle">Checking repository README.md</span>
+            <span class="sync-title" id="sync-title">Loading personal logs...</span>
+            <span class="sync-subtitle" id="sync-subtitle">Reading people/ from the repository</span>
           </div>
         </div>
-
         <div class="sync-actions">
-          <button id="btn-refresh" class="btn btn-secondary btn-sm" title="Check GitHub repository for newly committed logs">
+          <button id="btn-refresh" class="btn btn-secondary btn-sm" title="Fetch the latest personal logs from the repository">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
             <span>Sync Live</span>
-          </button>
-          <button id="btn-copy-template" class="btn btn-secondary btn-sm" title="Copy format snippet to paste into README.md">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-            <span>Copy Template</span>
           </button>
         </div>
       </div>
 
-      <!-- Filter & Search Toolbar -->
+      <!-- People picker -->
+      <div class="people-grid" id="people-grid" role="list">
+        <!-- Rendered by people.js -->
+      </div>
+
+      <!-- Search Toolbar -->
       <div class="filter-toolbar">
         <div class="filter-row-top">
-          <div class="group-filters" id="group-filters">
-            <button class="filter-pill active" data-group="ALL">
-              <span>All Subsystems</span>
-              <span class="pill-count">1</span>
-            </button>
-            <button class="filter-pill" data-group="G1">
-              <span>G1: Testbed</span>
-              <span class="pill-count">0</span>
-            </button>
-            <button class="filter-pill" data-group="G2">
-              <span>G2: LLM+KG</span>
-              <span class="pill-count">0</span>
-            </button>
-            <button class="filter-pill" data-group="G3">
-              <span>G3: iCAP</span>
-              <span class="pill-count">0</span>
-            </button>
-          </div>
-
-          <span id="total-count" style="font-size: 0.85rem; font-weight: 600; color: var(--color-text-muted);">
-            Loading entries...
-          </span>
+          <h2 class="people-heading" id="people-heading">Everyone</h2>
+          <span id="total-count" style="font-size: 0.85rem; font-weight: 600; color: var(--color-text-muted);">Loading entries...</span>
         </div>
-
         <div class="filter-row-bottom">
           <div class="search-box">
             <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-            <input type="text" id="search-input" class="search-input" placeholder="Search by milestone, topic, or document link..." aria-label="Search activity logs">
+            <input type="text" id="search-input" class="search-input" placeholder="Search personal entries..." aria-label="Search personal logs">
           </div>
-
-          <select id="sort-select" class="sort-select" aria-label="Sort activity logs">
-            <option value="desc">Newest First</option>
-            <option value="asc">Oldest First</option>
-          </select>
+          <a id="source-link" class="btn btn-secondary btn-sm" href="https://github.com/D7017E-LLM-Based-Failure-Detection/D7017E-documentation/tree/main/people" target="_blank" rel="noopener noreferrer">View on GitHub ↗</a>
         </div>
       </div>
 
       <!-- Timeline Feed -->
       <div class="timeline" id="timeline-container">
-        <!-- Rendered by activity.js -->
+        <!-- Rendered by people.js -->
       </div>
 
-      <!-- Empty State (Shown when search/filter has no match) -->
+      <!-- Empty State -->
       <div id="empty-state" class="empty-state" style="display: none;">
-        <div class="empty-icon">🔍</div>
-        <h3 class="empty-title">No matching activity logs found</h3>
-        <p class="empty-description">Try adjusting your search query or group filter.</p>
-        <button id="clear-filters-btn" class="btn btn-secondary btn-sm">Clear Filters</button>
+        <div class="empty-icon">📝</div>
+        <h3 class="empty-title" id="empty-title">No entries yet</h3>
+        <p class="empty-description" id="empty-description">Nothing logged here yet.</p>
       </div>
 
       <!-- Instructions & Format Card -->
@@ -145,21 +116,18 @@
         <div class="guidelines-header">
           <h3 class="guidelines-title">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
-            How to Log Activity (from CONTRIBUTING.md)
+            How to Log Personal Activity (from people/README.md)
           </h3>
-          <a href="https://github.com/D7017E-LLM-Based-Failure-Detection/D7017E-documentation/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
+          <a href="https://github.com/D7017E-LLM-Based-Failure-Detection/D7017E-documentation/blob/main/people/README.md" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
             Read Guide ↗
           </a>
         </div>
         <p style="color: var(--color-text-secondary); font-size: 0.925rem; margin-bottom: 0.75rem;">
-          Write it down the same day so nobody has to reconstruct the project from chat history. <strong>README is the log, docs are the state.</strong> Log entries are never edited to stay current; documents always are. No names or titles here: who did what goes in the <a href="./people.html">personal logs</a>, which link back to these entries by their anchor.
+          One line per entry in <code>people/&lt;firstname-lastname&gt;.md</code>, newest first. The <code>⇡</code> link is optional and points to the <code>&lt;a id&gt;</code> anchor of one group log entry.
         </p>
         <div class="code-snippet-box">
-          <code>- &lt;a id="YYYY-MM-DD-slug"&gt;&lt;/a&gt;YYYY-MM-DD — [G1|G2|G3|ALL] — what happened. → [doc](path)</code>
+          <code>- YYYY-MM-DD — [G1|G2|G3|ALL] — what you did. → [doc](../path.md) ⇡ [id](../README.md#id)</code>
         </div>
-        <p style="color: var(--color-text-muted); font-size: 0.85rem;">
-          ⚡ <strong>Automated Update:</strong> When you commit a new line under <code>## Activity log</code> in <code>README.md</code>, GitHub Actions automatically compiles and updates this website. You can also press <strong>"Sync Live"</strong> above to fetch the latest commits right away.
-        </p>
       </div>
 
     </div>
@@ -206,7 +174,7 @@
       </div>
       <div class="footer-bottom">
         <div>© 2026 D7017E Project Team. Hosted with GitHub Pages.</div>
-        <div>Automated sync enabled for <code>README.md</code></div>
+        <div>Automated sync enabled for <code>README.md</code> and <code>people/</code></div>
       </div>
     </div>
   </footer>
@@ -214,7 +182,8 @@
   <!-- Scripts -->
   <script src="./js/main.js"></script>
   <script src="./data/activity-log.js"></script>
+  <script src="./data/people-log.js"></script>
   <script src="./js/log-parser.js"></script>
-  <script src="./js/activity.js"></script>
+  <script src="./js/people.js"></script>
 </body>
 </html>

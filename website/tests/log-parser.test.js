@@ -10,7 +10,8 @@ const {
   parseLogLine,
   parseActivityLogs,
   mergeLogEntries,
-  calculateLogStats
+  calculateLogStats,
+  parsePeopleIndex
 } = require('../js/log-parser.js');
 
 test('formatDisplayDate formats valid dates correctly', () => {
@@ -272,4 +273,65 @@ test('parseActivityLogs ignores numbered empty bullets without corrupting previo
   assert.strictEqual(entries.length, 2);
   assert.strictEqual(entries[0].summary, 'Core delivery accomplished.');
   assert.strictEqual(entries[1].summary, 'Initial baseline.');
+});
+
+test('parseLogLine reads group entry anchors without polluting the summary', () => {
+  const entry = parseLogLine('- <a id="2026-09-24-delivery-repo"></a>2026-09-24 — ALL (PO) — Delivery repo drafted. → [README](README.md)');
+  assert.ok(entry);
+  assert.strictEqual(entry.date, '2026-09-24');
+  assert.strictEqual(entry.group, 'ALL');
+  assert.strictEqual(entry.author, 'PO');
+  assert.strictEqual(entry.anchor, '2026-09-24-delivery-repo');
+  assert.strictEqual(entry.summary, 'Delivery repo drafted.');
+  assert.strictEqual(entry.links.length, 1);
+});
+
+test('parseLogLine reads a personal entry link to a group entry', () => {
+  const entry = parseLogLine('- 2026-10-01 — G1 — Drafted the payload schema. → [ic-01](../interfaces/ic-01.md) ⇡ [2026-10-02-telemetry-schema](../README.md#2026-10-02-telemetry-schema)');
+  assert.ok(entry);
+  assert.strictEqual(entry.group, 'G1');
+  assert.strictEqual(entry.author, null);
+  assert.strictEqual(entry.summary, 'Drafted the payload schema.');
+  assert.deepStrictEqual(entry.links.map(l => l.text), ['ic-01']);
+  assert.deepStrictEqual(entry.groupRef, {
+    id: '2026-10-02-telemetry-schema',
+    text: '2026-10-02-telemetry-schema',
+    url: '../README.md#2026-10-02-telemetry-schema'
+  });
+  assert.strictEqual(entry.anchor, null);
+});
+
+test('real README and personal logs parse, and every ⇡ points at an existing anchor', () => {
+  const root = path.resolve(__dirname, '../..');
+  const group = parseActivityLogs(fs.readFileSync(path.join(root, 'README.md'), 'utf8'));
+  const anchors = new Set(group.map(e => e.anchor).filter(Boolean));
+  assert.ok(group.length > 0);
+  assert.strictEqual(anchors.size, group.filter(e => e.anchor).length, 'group log anchors must be unique');
+  const peopleDir = path.join(root, 'people');
+  fs.readdirSync(peopleDir).filter(f => f.endsWith('.md') && f !== 'README.md').forEach(f => {
+    parseActivityLogs(fs.readFileSync(path.join(peopleDir, f), 'utf8')).forEach(e => {
+      if (e.groupRef) assert.ok(anchors.has(e.groupRef.id), `${f}: ⇡ ${e.groupRef.id} has no matching anchor in README.md`);
+    });
+  });
+});
+
+test('parsePeopleIndex reads the people table', () => {
+  const md = [
+    '| Name | GitHub | Current group | Personal log |',
+    '|---|---|---|---|',
+    '| Ada Lovelace | [@ada-l](https://github.com/ada-l) | G2 | [ada-lovelace.md](ada-lovelace.md) |',
+    '| Grace Hopper | [@ghopper](https://github.com/ghopper) | Lead (all groups) | [grace-hopper.md](grace-hopper.md) |'
+  ].join('\n');
+  assert.deepStrictEqual(parsePeopleIndex(md), [
+    { name: 'Ada Lovelace', slug: 'ada-lovelace', github: 'ada-l', groupLabel: 'G2', group: 'G2', file: 'ada-lovelace.md' },
+    { name: 'Grace Hopper', slug: 'grace-hopper', github: 'ghopper', groupLabel: 'Lead (all groups)', group: 'ALL', file: 'grace-hopper.md' }
+  ]);
+  assert.deepStrictEqual(parsePeopleIndex('no table here'), []);
+});
+
+test('real people/README.md lists a log file that exists for everyone', () => {
+  const peopleDir = path.resolve(__dirname, '../../people');
+  const people = parsePeopleIndex(fs.readFileSync(path.join(peopleDir, 'README.md'), 'utf8'));
+  assert.ok(people.length > 0);
+  people.forEach(p => assert.ok(fs.existsSync(path.join(peopleDir, p.file)), `people/${p.file} missing for ${p.name}`));
 });

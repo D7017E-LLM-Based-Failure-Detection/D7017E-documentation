@@ -163,7 +163,7 @@
         : '';
 
       return `
-        <div class="timeline-item" id="${escapeHtml(entry.id)}">
+        <div class="timeline-item" id="${escapeHtml(entry.anchor || entry.id)}">
           <div class="timeline-marker ${markerClass}"></div>
           <div class="timeline-card">
             <div class="timeline-header">
@@ -179,15 +179,35 @@
         </div>
       `;
     }).join('');
+
+    highlightHashTarget();
+  }
+
+  /**
+   * Scroll to and highlight the entry named in the URL hash
+   * (e.g. activity.html#2026-09-24-delivery-repo, linked from the People page)
+   */
+  let highlightedHash = null;
+  function highlightHashTarget() {
+    const hash = decodeURIComponent(window.location.hash.replace(/^#/, ''));
+    if (!hash) return;
+    const target = document.getElementById(hash);
+    if (!target || !target.classList.contains('timeline-item')) return;
+    target.classList.add('is-target');
+    if (highlightedHash !== hash) {
+      highlightedHash = hash;
+      target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
   }
 
   /**
    * Update Group Filter counts in the UI
    */
   function updateGroupCounts() {
+    // The "All Subsystems" pill counts every entry; the others count their own group
     const stats = { ALL: allEntries.length, G1: 0, G2: 0, G3: 0 };
     allEntries.forEach(e => {
-      if (stats[e.group] !== undefined) {
+      if (e.group !== 'ALL' && stats[e.group] !== undefined) {
         stats[e.group]++;
       }
     });
@@ -447,7 +467,7 @@
     if (btnCopyTemplate) {
       btnCopyTemplate.addEventListener('click', () => {
         const today = new Date().toISOString().split('T')[0];
-        const template = `- ${today} — ALL (name) — Brief description of milestone or working session. → [CONTRIBUTING.md](CONTRIBUTING.md)`;
+        const template = `- <a id="${today}-short-slug"></a>${today} — ALL — Brief description of milestone or decision. → [CONTRIBUTING.md](CONTRIBUTING.md)`;
         navigator.clipboard.writeText(template).then(() => {
           if (window.showToast) {
             window.showToast('Copied log entry template to clipboard!');

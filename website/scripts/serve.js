@@ -14,6 +14,7 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 const { parseActivityLogs, mergeLogEntries, calculateLogStats } = require('../js/log-parser.js');
+const { syncPeopleLogs } = require('./sync-activity-logs.js');
 
 const WEBSITE_DIR = path.resolve(__dirname, '..');
 const ROOT_DIR = path.resolve(__dirname, '../..');
@@ -134,6 +135,29 @@ const server = http.createServer((req, res) => {
       res.writeHead(200, { 'Content-Type': MIME_TYPES['.md'] });
       fs.createReadStream(CONTRIBUTING_PATH).pipe(res);
       return;
+    }
+  }
+
+  // Serve people/README.md and personal logs (people/<slug>.md) from the repo root
+  const peopleMatch = /^\/people\/([\w.-]+\.md)$/.exec(pathname);
+  if (peopleMatch) {
+    const peopleFile = path.join(ROOT_DIR, 'people', peopleMatch[1]);
+    if (fs.existsSync(peopleFile)) {
+      res.writeHead(200, { 'Content-Type': MIME_TYPES['.md'] });
+      fs.createReadStream(peopleFile).pipe(res);
+      return;
+    }
+  }
+
+  if (pathname === '/data/people-log.json' || pathname === '/data/people-log.js') {
+    try {
+      const fresh = syncPeopleLogs();
+      const isJs = pathname.endsWith('.js');
+      res.writeHead(200, { 'Content-Type': MIME_TYPES[isJs ? '.js' : '.json'] });
+      res.end(isJs ? `window.PEOPLE_LOG_DATA = ${JSON.stringify(fresh, null, 2)};\n` : JSON.stringify(fresh, null, 2));
+      return;
+    } catch (e) {
+      // Fallback to static file read below
     }
   }
 

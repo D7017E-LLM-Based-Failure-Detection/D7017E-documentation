@@ -133,3 +133,32 @@ test('removed architecture css classes do not linger in main.css', () => {
   assert.strictEqual(css.includes('.pipeline-node'), false, 'main.css must not have pipeline-node');
   assert.strictEqual(css.includes('.pipeline-arrow'), false, 'main.css must not have pipeline-arrow');
 });
+
+test('people page loads personal logs and is linked from every page', () => {
+  const peopleHtml = fs.readFileSync(path.join(WEBSITE_DIR, 'people.html'), 'utf8');
+  ['people-grid', 'timeline-container', 'btn-refresh', 'log-parser.js', 'people.js', 'people-log.js'].forEach(s => {
+    assert.ok(peopleHtml.includes(s), `people.html must include ${s}`);
+  });
+  ['index.html', 'activity.html', 'groups.html'].forEach(page => {
+    assert.ok(fs.readFileSync(path.join(WEBSITE_DIR, page), 'utf8').includes('href="./people.html"'), `${page} must link to people.html`);
+  });
+
+  execSync('node scripts/sync-activity-logs.js', { cwd: WEBSITE_DIR, encoding: 'utf8' });
+  const data = JSON.parse(fs.readFileSync(path.join(WEBSITE_DIR, 'data/people-log.json'), 'utf8'));
+  assert.ok(Array.isArray(data.people) && data.people.length > 0, 'people-log.json must list people');
+  data.people.forEach(p => {
+    assert.ok(p.name && p.slug && p.file, 'person must have name, slug and file');
+    assert.ok(Array.isArray(p.entries), 'person must have entries array');
+  });
+});
+
+test('Node and Python sync scripts compile identical people data', () => {
+  const readPeople = () => JSON.parse(fs.readFileSync(path.join(WEBSITE_DIR, 'data/people-log.json'), 'utf8')).people;
+  execSync('node scripts/sync-activity-logs.js', { cwd: WEBSITE_DIR, encoding: 'utf8' });
+  const fromNode = readPeople();
+  execSync('python3 scripts/sync-activity-logs.py', { cwd: WEBSITE_DIR, encoding: 'utf8' });
+  const fromPython = readPeople();
+  execSync('node scripts/sync-activity-logs.js', { cwd: WEBSITE_DIR, encoding: 'utf8' });
+  assert.ok(fromNode.length > 0);
+  assert.deepStrictEqual(fromPython, fromNode);
+});
