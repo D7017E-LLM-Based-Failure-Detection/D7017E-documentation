@@ -27,13 +27,11 @@ entry link to this one (`README.md#YYYY-MM-DD-slug`). No names or titles here: t
 log is about the team's work. Who did what goes in your own log.
 
 <!-- Add new entries directly below this line -->
-<<<<<<< HEAD
 - 2026-09-28 — G1 — Visited the AIC lab to recreate the supervisor’s Fridayy demo. After three hours of debugging multiple issues, we stopped and scheduled a meeting with the supervisor for 2026-09-30 to resolve them.
 - 2026-09-21 — ALL — Documentation repo set up. → [CONTRIBUTING.md](CONTRIBUTING.md)
 - 2026-09-21 — G1  — Meeting in the Lab with the supervisor. They showed us around and scheduled a demonstration of the system later this week.
 - 2026-09-24 — ALL (PO) — Delivery repo drafted: component contract, component registry, first end-to-end scenario (S01), ADR 0001 (containers) proposed. → D7017E-delivery
 - 2026-09-24 — ALL — Presented work done during Week 38-39 in meeting with the product owner & Co. 
-=======
 - <a id="2026-09-25-personal-logs"></a>2026-09-25 — ALL — Personal activity logs added, one per person, linkable to entries here. → [people/](people/README.md)
 - <a id="2026-09-25-project-description"></a>2026-09-25 — ALL — Everyone worked together on the project description and completed it.
 - <a id="2026-09-24-delivery-repo"></a>2026-09-24 — ALL — Delivery repo drafted: component contract, component registry, first end-to-end scenario (S01), ADR 0001 (containers) proposed. → D7017E-delivery
@@ -43,7 +41,6 @@ log is about the team's work. Who did what goes in your own log.
 - <a id="2026-09-21-g1-lab-visit"></a>2026-09-21 — G1  — Meeting in the Lab with the supervisor. They showed us around and scheduled a demonstration of the system later this week.
 - <a id="2026-09-21-llm-kg-repo"></a>2026-09-21 — G2 — Created the llm-kg repository, imported MAESTRO, and added Python environment instructions and a quickstart script for querying example data.
 - <a id="2026-09-21-g2-sprint-planning"></a>2026-09-21 — G2 — Held a sprint planning meeting.
->>>>>>> cb2cd2c0e3355ea989acef3876dd7f2a8eb31cab
 
 
 <!-- Example entries, delete when the log has real content:
