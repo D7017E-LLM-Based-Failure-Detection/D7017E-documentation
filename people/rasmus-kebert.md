@@ -7,6 +7,8 @@
 Newest first. Format and rules: [people/README.md](README.md).
 
 <!-- Add new entries directly below this line -->
+- 2026-10-06 — G2 — Connected the basic MCP server to the agent.
+- 2026-10-05 — G2 — Set up a basic MCP server for the agent integration.
 - 2026-10-02 — G2 — Tried out the functions available for the LLM hosted on the LTU cluster.
 - 2026-10-02 — G2 — Added an LLM-generated SHACL constraint to the Pizza ontology example and documented how to import and test it in GraphDB. → [Pizza example](https://github.com/D7017E-LLM-Based-Failure-Detection/llm-kg/tree/pizza/knowledge/pizza_example)
 - 2026-10-01 — G2 — Started working on the Pizza ontology example and began setting it up in GraphDB. → [Pizza example](https://github.com/D7017E-LLM-Based-Failure-Detection/llm-kg/tree/pizza/knowledge/pizza_example)
