@@ -2,7 +2,7 @@
 
 > Status: draft
 > Owner: G2 — <names>
-> Last meaningful update: 2026-09-21
+> Last meaningful update: 2026-09-22
 
 **Task.** Develop an explainable reasoning loop at the intersection of LLMs and
 formally represented knowledge about the automation process, expressed in RDF
@@ -22,6 +22,15 @@ happened in the two years since.
 One file per topic. Reading notes go in `references/notes/<bibtexkey>.md`
 (template: [reading-note.md](../../templates/reading-note.md)); evaluation runs go
 in [experiments/](../../experiments/README.md).
+
+## Technology choices
+
+On 2026-09-22, G2 made the following choices:
+
+| Technology | Role | Reason for choosing it |
+|---|---|---|
+| FastAPI | Framework for the agent-facing API | Its Python and asynchronous API model fits the agent code and makes it straightforward to expose endpoints used with agents and MCP servers. |
+| GraphDB | Graph database | It stores RDF data natively, supports SPARQL queries and semantic reasoning, and therefore fits the ontologies and explainable knowledge-graph workflow used by G2. |
 
 ## What the other groups need from us
 
