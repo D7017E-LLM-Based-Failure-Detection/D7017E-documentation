@@ -7,3 +7,4 @@
 Newest first. Format and rules: [people/README.md](README.md).
 
 <!-- Add new entries directly below this line -->
+2026-10-06 finished modoulo 2^ started OPC-UA tutoriaa
