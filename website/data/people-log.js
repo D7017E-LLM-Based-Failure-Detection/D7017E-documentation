@@ -1,5 +1,5 @@
 window.PEOPLE_LOG_DATA = {
-  "syncedAt": "2026-09-25T10:04:54.680Z",
+  "syncedAt": "2026-09-25T10:10:37.242Z",
   "people": [
     {
       "name": "Malcolm Ovin",
