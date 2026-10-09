@@ -31,6 +31,7 @@ On 2026-09-22, G2 made the following choices:
 |---|---|---|
 | FastAPI | Framework for the agent-facing API | Its Python and asynchronous API model fits the agent code and makes it straightforward to expose endpoints used with agents and MCP servers. |
 | GraphDB | Graph database | It stores RDF data natively, supports SPARQL queries and semantic reasoning, and therefore fits the ontologies and explainable knowledge-graph workflow used by G2. |
+| TimeScaleDB | Time series database | Postgres but with added time series support. Can store the sensor data before processing and also supports direct querying |
 
 ## What the other groups need from us
 
