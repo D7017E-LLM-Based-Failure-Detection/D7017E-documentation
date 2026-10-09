@@ -28,6 +28,7 @@ log is about the team's work. Who did what goes in your own log.
 
 <!-- Add new entries directly below this line -->
 - 2026-10-09 — G2 — Meeting with Måns discussing local LLM.
+- 2026-10-09 — ALL — Progress meeting with Parnes.
 - 2026-10-08 — ALL — Weekly meeting with Evgeny.
 - 2026-10-08 — G1 — Made v1 of KG visualization.
 - 2026-10-07 — G1 — Meeting with Sandeep, Evgeny and Försvarsmakten.

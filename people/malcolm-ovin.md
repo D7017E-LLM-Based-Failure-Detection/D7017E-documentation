@@ -8,6 +8,7 @@ Newest first. Format and rules: [people/README.md](README.md).
 
 <!-- Add new entries directly below this line -->
 - 2026-10-09 — G2 — Attended the meeting with Måns discussing local LLM.
+- 2026-10-09 — ALL — Attended the progress meeting with Parnes.
 - 2026-10-08 — G1 — Made v1 of KG visualization.
 - 2026-10-07 — G1 — Attended the meeting with Sandeep, Evgeny and Försvarsmakten.
 - 2026-10-07 — G1 — Made v1 of XML to KG converter.
