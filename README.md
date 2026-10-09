@@ -29,7 +29,9 @@ log is about the team's work. Who did what goes in your own log.
 <!-- Add new entries directly below this line -->
 - 2026-10-09 — G2 — Meeting with Måns discussing local LLM.
 - 2026-10-08 — ALL — Weekly meeting with Evgeny.
+- 2026-10-08 — G1 — Made v1 of KG visualization.
 - 2026-10-07 — G1 — Meeting with Sandeep, Evgeny and Försvarsmakten.
+- 2026-10-07 — G1 — Made v1 of XML to KG converter.
 - 2026-09-28 — G1 — Visited the AIC lab to recreate the supervisor’s Fridayy demo. After three hours of debugging multiple issues, we stopped and scheduled a meeting with the supervisor for 2026-09-30 to resolve them.
 - 2026-09-21 — ALL — Documentation repo set up. → [CONTRIBUTING.md](CONTRIBUTING.md)
 - 2026-09-21 — G1  — Meeting in the Lab with the supervisor. They showed us around and scheduled a demonstration of the system later this week.
