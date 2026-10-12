@@ -27,6 +27,7 @@ entry link to this one (`README.md#YYYY-MM-DD-slug`). No names or titles here: t
 log is about the team's work. Who did what goes in your own log.
 
 <!-- Add new entries directly below this line -->
+- <a id="2026-10-12-mps-or-standard-lib"></a>2026-10-12 — G1 — Met to discuss whether to continue with the MPS code or rewrite the system using the standard library components.
 - 2026-10-09 — G2 — Meeting with Måns discussing local LLM.
 - 2026-10-09 — ALL — Progress meeting with Parnes.
 - 2026-10-08 — ALL — Weekly meeting with Evgeny.
