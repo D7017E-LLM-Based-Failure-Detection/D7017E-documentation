@@ -7,7 +7,6 @@
 Newest first. Format and rules: [people/README.md](README.md).
 
 <!-- Add new entries directly below this line -->
-- 2026-10-28 — G2 — Reconstructed and documented the daily RAG progress using the project chats and Git history.
 - 2026-10-27 — G2 — Added LLM token-usage tracking to support RAG pipeline evaluation.
 - 2026-10-26 — G2 — Added GraphDB entity retrieval and continued implementing iterative SPARQL reasoning, schema retrieval, and evaluation.
 - 2026-10-24 — G2 — Evaluated and debugged the RAG pipeline's schema retrieval, SPARQL reasoning, and semantic answer grading.
