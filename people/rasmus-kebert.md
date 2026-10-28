@@ -7,6 +7,7 @@
 Newest first. Format and rules: [people/README.md](README.md).
 
 <!-- Add new entries directly below this line -->
+- 2026-10-15 — G2 — Designed an architecture combining the LLM, RAG, MCP, ontology databases, and live data.
 - 2026-10-14 — G2 — Refined the GraphDB agent's context, SPARQL handling, ontology reasoning, and final answer output.
 - 2026-10-13 — G2 — Implemented a minimal agent API for the cluster LLM and Pizza GraphDB and debugged VPN, TLS, and SPARQL issues.
 - 2026-10-12 — G2 — Created RAG text documents and a loader while planning a minimal FAISS and SentenceTransformers pipeline.
