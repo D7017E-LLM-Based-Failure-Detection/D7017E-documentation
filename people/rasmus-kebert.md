@@ -7,6 +7,7 @@
 Newest first. Format and rules: [people/README.md](README.md).
 
 <!-- Add new entries directly below this line -->
+- 2026-10-12 — G2 — Created RAG text documents and a loader while planning a minimal FAISS and SentenceTransformers pipeline.
 - 2026-10-09 — G2 — Debugged an LLM-generated SPARQL prefix error and documented the agent and MCP query flow.
 - 2026-10-08 — G2 — Inspected the Pizza ontology and studied ABox, TBox, ontology IRIs, SPARQL restrictions, and inferred knowledge.
 - 2026-10-07 — G2 — Updated the G2 documentation with the MCP integration and selected technology decisions.
