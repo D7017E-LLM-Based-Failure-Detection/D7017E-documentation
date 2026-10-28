@@ -7,6 +7,7 @@
 Newest first. Format and rules: [people/README.md](README.md).
 
 <!-- Add new entries directly below this line -->
+- 2026-10-07 — G2 — Updated the G2 documentation with the MCP integration and selected technology decisions.
 - 2026-10-06 — G2 — Connected the basic MCP server to the agent.
 - 2026-10-05 — G2 — Set up a basic MCP server for the agent integration.
 - 2026-10-02 — G2 — Tried out the functions available for the LLM hosted on the LTU cluster.
