@@ -7,6 +7,7 @@
 Newest first. Format and rules: [people/README.md](README.md).
 
 <!-- Add new entries directly below this line -->
+- 2026-10-23 — G2 — Developed entity and schema retrieval using question decomposition, FAISS, exact matching, and LLM selection.
 - 2026-10-22 — G2 — Created the ontology RAG pipeline diagram and designed the flow from entity retrieval through schema retrieval to SPARQL execution.
 - 2026-10-20 — G2 — Added the initial document and GraphDB RAG pipelines together with example documents, dependencies, and setup instructions.
 - 2026-10-19 — G2 — Ran the document RAG pipeline, integrated the cluster certificate, and reviewed chunking, embeddings, and FAISS retrieval.
