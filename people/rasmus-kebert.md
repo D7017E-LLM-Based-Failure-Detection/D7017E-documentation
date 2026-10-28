@@ -12,6 +12,7 @@ Newest first. Format and rules: [people/README.md](README.md).
 - 2026-10-24 — G2 — Evaluated and debugged the RAG pipeline's schema retrieval, SPARQL reasoning, and semantic answer grading.
 - 2026-10-23 — G2 — Developed entity and schema retrieval using question decomposition, FAISS, exact matching, and LLM selection.
 - 2026-10-22 — G2 — Created the ontology RAG pipeline diagram and designed the flow from entity retrieval through schema retrieval to SPARQL execution.
+- 2026-10-21 — G2 — Prepared a short demonstration of document-based RAG.
 - 2026-10-20 — G2 — Added the initial document and GraphDB RAG pipelines together with example documents, dependencies, and setup instructions.
 - 2026-10-19 — G2 — Ran the document RAG pipeline, integrated the cluster certificate, and reviewed chunking, embeddings, and FAISS retrieval.
 - 2026-10-18 — G2 — Simplified the base agent and designed a staged approach for document retrieval followed by knowledge-graph RAG.
