@@ -7,6 +7,7 @@
 Newest first. Format and rules: [people/README.md](README.md).
 
 <!-- Add new entries directly below this line -->
+- 2026-10-19 — G2 — Ran the document RAG pipeline, integrated the cluster certificate, and reviewed chunking, embeddings, and FAISS retrieval.
 - 2026-10-18 — G2 — Simplified the base agent and designed a staged approach for document retrieval followed by knowledge-graph RAG.
 - 2026-10-15 — G2 — Designed an architecture combining the LLM, RAG, MCP, ontology databases, and live data.
 - 2026-10-14 — G2 — Refined the GraphDB agent's context, SPARQL handling, ontology reasoning, and final answer output.
