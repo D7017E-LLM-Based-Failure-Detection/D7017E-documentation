@@ -16,6 +16,7 @@ Newest first. Format and rules: [people/README.md](README.md).
 - 2026-10-19 — G2 — Ran the document RAG pipeline, integrated the cluster certificate, and reviewed chunking, embeddings, and FAISS retrieval.
 - 2026-10-18 — G2 — Simplified the base agent and designed a staged approach for document retrieval followed by knowledge-graph RAG.
 - 2026-10-15 — G2 — Designed an architecture combining the LLM, RAG, MCP, ontology databases, and live data.
+- 2026-10-15 — G2 — Prepared slides for the project meeting.
 - 2026-10-14 — G2 — Refined the GraphDB agent's context, SPARQL handling, ontology reasoning, and final answer output.
 - 2026-10-13 — G2 — Implemented a minimal agent API for the cluster LLM and Pizza GraphDB and debugged VPN, TLS, and SPARQL issues.
 - 2026-10-12 — G2 — Created RAG text documents and a loader while planning a minimal FAISS and SentenceTransformers pipeline.
