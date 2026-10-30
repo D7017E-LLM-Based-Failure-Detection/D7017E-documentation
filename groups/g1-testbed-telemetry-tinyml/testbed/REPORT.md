@@ -1,4 +1,4 @@
-# Distribution Station in EAE: Project Report
+# Festo MPS - Distribution Station in EAE: Project Report
 
 ## Summary
 
@@ -48,13 +48,13 @@ The design was checked against the AHU (air handling unit) example from the work
 
 ## Design
 
-![What is built: the Distribution station's blocks, built and planned](Report-LP1-figure1.png)
+![What is built: the Distribution station's blocks, built and planned](station-blocks.png)
 
 *Figure 1. The station's blocks. Solid boxes are built and run in simulation; dashed boxes are planned.*
 
 Inside the `Distribution` CAT, each physical device is one library block: three valve blocks for the Ejector, the Swivel and the Vacuum, a digital output for BlowOff, and two digital inputs for the magazine-empty sensor and the IP\_FI signal. Two permissive blocks are connected to the Ejector and the Swivel. The sequences send commands to the devices through symbolic links, and the devices' feedback comes back on wires.
 
-![How the station runs: the station states, the reset sequence and the automatic cycle](Report-LP1-figure2.png)
+![How the station runs: the station states, the reset sequence and the automatic cycle](auto-cycle.png)
 
 *Figure 2. How the station runs. Only the reset sequence (left) is built so far.*
 
