@@ -7,6 +7,8 @@
 Newest first. Format and rules: [people/README.md](README.md).
 
 <!-- Add new entries directly below this line -->
+- 2026-10-30 — G3 — Started switching out imported chatbot to the project LLM (currently bug fixing) 
+- 2026-10-30 — G3 — Added new parameters for selection in test-platform
 - 2026-10-14 — G3 — Added history-function Chat-prompt tab
 - 2026-10-14 — G3 — Basic logic setup for API calls in test-platform
 - 2026-10-13 — G3 — Adapted test-platform for "agent.py" structure
