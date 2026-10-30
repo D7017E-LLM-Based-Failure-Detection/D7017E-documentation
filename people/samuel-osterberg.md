@@ -7,6 +7,13 @@
 Newest first. Format and rules: [people/README.md](README.md).
 
 <!-- Add new entries directly below this line -->
+- 2026-10-30 — G3 — started to refactor station 2 and whole conveyor belt
+- 2026-10-24 — G3 — successfully refactored other half of station 1 called "testing"
+- 2026-10-23 — G3 — succesfully refactored half of station 1 called "distributing"
+- 2026-10-22 — G3 — started to refactor whole visualization to add or switch parts for real CAD parts
+- 2026-10-21 — G3 — added a CAD model into the 3D scene and added an inspection mode
+- 2026-10-15 — G3 — established real communication with agent.py
+- 2026-10-14 — G3 — created a demo branch where other branches were merged into without affecting main
 - 2026-10-13 — G3 — adapted test-platform for "agent.py" structure
 - 2026-10-11 — G3 — adjusted Station 6 to have a robot arm and sorting conveyor belt
 - 2026-10-11 — G3 — adjusted Station 2 to have a robot arm and rotating table
