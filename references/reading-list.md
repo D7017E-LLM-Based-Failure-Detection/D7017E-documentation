@@ -14,6 +14,7 @@ Add a row when you read something useful, and say in one line why it matters —
 
 | Source | Link | For | Why it matters |
 |---|---|---|---|
+| Festo MPS 400 lab — knowledge transfer (work done with Flexbridge AB, version 2026-11-13) | [knowledge-transfer.pdf](../groups/g1-testbed-telemetry-tinyml/knowledge-transfer.pdf) | G1 | Knowledge transfer for the student team working with the Festo MPS 400 lab at Luleå University of Technology |
 | IEC 61499 Basic Introduction (course) | https://flexbridge.se/training/courses/iec-61499-basic-introduction | G1 | Required training: function blocks, event-driven execution model |
 | Distributed Automation EAE (course) | https://flexbridge.se/training/courses/distributed-automation-eae | G1 | Required training: distributed control applications in EAE |
 | HMI/SCADA EAE (course) | https://flexbridge.se/training/courses/hmi-scada-eae | G1, G3 | Required training: HMI/SCADA design; informs iCAP's operator views |
