@@ -4,7 +4,7 @@ This document will be a mix of a journal of the steps taken with documentation t
 
 Since the firmware, hardware and software in the lab are all over 10 years old there are a lot of support issues when new features are needed. Thus since the old hardware does not have support of EAE firmware all the hardware it the lab needs to be rewired to new controllers that supports it.
 
-The first step in this process was to disconnect all NXTStudio hardware that was currently plugged in to the relevant stations (1, 6 and conveyor belt) and remove all wires from them. We started with building a controller consisting of a CPS200 power supply, modicon mp580 process module, two input ports and two output ports. This resulted as seen below.
+The first step in this process was to disconnect all NXTStudio hardware that was currently plugged in to the relevant stations (1,2, 6 and conveyor belt) and remove all wires from them. We started with building a controller consisting of a CPS200 power supply, modicon mp580 process module, two input ports and two output ports. This resulted as seen below.
 
 ![Flexbridge controller](images/flexbridge.jpg)
 
@@ -23,11 +23,11 @@ So of course when we came back in the morning ready to start the conveyor belt a
 In the meantime we started to build a "temporary" mobile controller that replaces the controller that we already built since there is not telling when the Schneider controller will have support for EAE.
 ![New-Controller](images/new-controller.jpg)
 
-Since we already had built one "working" controller we thought that the experience would accelerate the process but it seemed that this was not the case. First the wires we needed was not in the same condition as the ones that we used for the first controller so a lot of them needed to be trimmed since the exposed copper either was twisted, in knots or just broken. Then the wiring protocols for these was also a bit confusing at first to get into:
+Since we already had built one "working" controller we thought that the experience would accelerate the process but it seemed that this was not the case. First the wires we needed were not in the same condition as the ones that we used for the first controller so a lot of them needed to be trimmed since the exposed copper either was twisted, in knots or just broken. Then the wiring protocols for these was also a bit confusing at first to get into:
 
 ![Input](images/2026-11-13-104738_hyprshot.png)![Input](images/2026-11-13-104808_hyprshot.png).
 
-Then, since we needed three controller anyway we thought that it would be better to build all three at the same time since they would all be wired in the same way so it would be easier. The reasoning why is due to Hebbian theory (neurons that wire together, fire together) or in this case if one work all work, but if one don't work nothing works. But at least if none work, at least we know that all of them have the exact same issue. The result came in looking like this:
+Then, since we needed three controllers anyway we thought that it would be better to build all three at the same time since they would all be wired in the same way so it would be easier. The reasoning why is due to Hebbian theory (neurons that wire together, fire together) or in this case if one work all work, but if one don't work nothing works. But at least if none work, at least we know that all of them have the exact same issue. The result came in looking like this:
 
 ![Working](images/fixed-controller.jpg)
 
